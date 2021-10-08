@@ -1,6 +1,7 @@
 
 import json
 
+
 class Variables:
     def __init__(self, variables={}):
         self.variables = variables
@@ -26,7 +27,7 @@ class Variables:
         formatted_vars = {}
         if variables:
             formatted_vars = {
-                k: v if isinstance(v, dict) else {"value": v}
+                k: {"value": json.dumps(v), "type": "Json"} if isinstance(v, (dict, list)) else {"value": v}
                 for k, v in variables.items()
             }
         return formatted_vars
